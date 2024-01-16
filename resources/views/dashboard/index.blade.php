@@ -1,16 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-@extends('dashboard.header')
+  
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AdminLTE 3 | Dashboard</title>
+
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="{{ asset("plugins/fontawesome-free/css/all.min.css")}}">
+<!-- Ionicons -->
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Tempusdominus Bootstrap 4 -->
+<link rel="stylesheet" href="{{ asset("plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css")}}">
+<!-- iCheck -->
+<link rel="stylesheet" href="{{ asset("plugins/icheck-bootstrap/icheck-bootstrap.min.css")}}">
+<!-- JQVMap -->
+<link rel="stylesheet" href="{{ asset("plugins/jqvmap/jqvmap.min.css")}}">
+<!-- Theme style -->
+<link rel="stylesheet" href="{{ asset("dist/css/adminlte.min.css")}}">
+<!-- overlayScrollbars -->
+<link rel="stylesheet" href="{{ asset("plugins/overlayScrollbars/css/OverlayScrollbars.min.css")}}">
+<!-- Daterange picker -->
+<link rel="stylesheet" href="{{ asset("plugins/daterangepicker/daterangepicker.css")}}">
+<!-- summernote -->
+<link rel="stylesheet" href="{{ asset("plugins/summernote/summernote-bs4.min.css")}}">
+
+  <link href="{{ asset('fontawesome/css/all.min.css') }}" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src={{ asset("dist/img/AdminLTELogo.png")}} alt="AdminLTELogo" height="60" width="60">
   </div>
-
+ 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -24,7 +49,7 @@
     <ul class="navbar-nav ml-auto">
 
       <li class="nav-item">
-        <a class="nav-link" data-widget=" " href="#" role="button">
+        <a class="nav-link" onclick="requestFullscreen();" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
@@ -71,11 +96,34 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="{{ route('category.create') }}" class="nav-link">
+              <i class="nav-icon fas fa-add"></i>
+              <p>
+                Create Category
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('category.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Widgets
-                <span class="right badge badge-danger">New</span>
+                Category List
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('item.create') }}" class="nav-link">
+              <i class="nav-icon fas fa-add"></i>
+              <p>
+                Item Create
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('item.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Item List
               </p>
             </a>
           </li>
@@ -89,17 +137,8 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-            
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+          @yield('content')
     </div>
     <!-- /.content-header -->
 
