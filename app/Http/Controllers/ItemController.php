@@ -9,6 +9,10 @@ use App\Models\Category;
 
 class ItemController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth',['except' => ['index','show']]);
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -46,6 +50,7 @@ class ItemController extends Controller
         $item->name = $request->name;
         $item->price = $request->price;
         $item->category_id = $request->category_id;
+        $item->expdate = $request->expdate;
         $item->save();
         return redirect()->route("item.index")->with("success","Item Successfully Created");
 
@@ -60,6 +65,7 @@ class ItemController extends Controller
     public function show(Item $item)
     {
         //
+        return view("item.detail", compact("item"));
     }
 
     /**
@@ -72,7 +78,7 @@ class ItemController extends Controller
     {
         //
         $categories = Category::all();
-        return view("item.edit", compact("item","categories"));
+        return view("item.edit", compact('item','categories'));
     }
 
     /**
@@ -84,12 +90,12 @@ class ItemController extends Controller
      */
     public function update(UpdateItemRequest $request, Item $item)
     {
-        //
+        
         $item->name = $request->name;
         $item->price = $request->price;
         $item->category_id = $request->category_id;
         $item->update();
-        return $item;
+        return redirect()->route('item.index')->with('update','Successfully Updated');
 
     }
 
@@ -102,5 +108,9 @@ class ItemController extends Controller
     public function destroy(Item $item)
     {
         //
+        if($item){
+            $item->delete();
+            return redirect()->route('item.index')->with('delete','Item Deleted successfully');
+        }
     }
 }

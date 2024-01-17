@@ -33,13 +33,22 @@
                           </div>
                           <div class="form-group m-3 row">
                             <label for="category_id" class="col-sm-6 col-form-label">Category<small class="text-danger">*</small></label>
-                          <select type="category" name="category_id" class="form-control inline">
+                            <div class="col-sm-6">
+                            <select type="category" name="category_id" class="form-control">
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
-                        </select>
-                      </div>
-                          <!-- select date will be here -->
+                            <option  value="none">None</option>
+                            </select>
+                            </div>
+                            </div>
+
+                            <div class="form-group m-3 row">
+                              <label for="expdate" class="col-sm-6 col-form-label">Date<small class="text-danger">*</small></label>
+                              <div class="col-sm-6">
+                                <input type="date" id="expdate" name="expdate">
+                              </div>
+                              </div>  
                           <!-- select image will be here -->
 
  

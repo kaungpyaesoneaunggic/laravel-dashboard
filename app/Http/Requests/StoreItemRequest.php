@@ -24,6 +24,11 @@ class StoreItemRequest extends FormRequest
     public function rules()
     {
         return [
+            "name"=> "required",
+            "price"=> "required",
+            "category_id"=> "required",
+            'expdate' => 'nullable|date',
+
             //
         ];
     }

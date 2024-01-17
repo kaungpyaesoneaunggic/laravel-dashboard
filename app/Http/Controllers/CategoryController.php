@@ -13,10 +13,10 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth',['except' => ['index','show']]);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth',['except' => ['index','show']]);
+    // }
     public function index()
     {
         //
@@ -98,10 +98,18 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        // //
         if($category){
             $category->delete();
         }
         return redirect()->route('category.index')->with("delete","Category deleted Successfully");;
+    
+        // if ($category->isDeletable()) {
+        //     $category->delete();
+        //     return redirect()->route("category.index")->with("delete","Successfully deleted");
+        // } else {
+        //     return redirect()->route("category.index")->with("delete","Cant delete This data is being used");
+           
+        // }
     }
-}
+    }

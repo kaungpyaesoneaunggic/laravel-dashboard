@@ -13,7 +13,7 @@
                             <button class="close alert-dismissible" data-dismiss="alert"><i class="fa fa-x"></i></button>
                         </div>
                         @endif
-                    {{-- @if(session('update'))
+                    @if(session('update'))
                         <div class="alert alert-primary alert-dismissible">
                             {{ session('update') }}
                             <button class="close alert-dismissible" data-dismiss="alert"><i class="fa fa-x"></i></button>
@@ -24,7 +24,7 @@
                             {{ session('delete') }}
                             <button class="close alert-dismissible" data-dismiss="alert"><i class="fa fa-x"></i></button>
                         </div>
-                        @endif --}}
+                        @endif
                 </div class='container'>
                     <table class="table" class="mx-5">
                       <thead>
@@ -48,11 +48,12 @@
                           <th scope="row">id - {{ $item->id }}</td>
                           <td>{{ $item->name }}</td>
                           <td>{{ $item->price }}</td>
-                          <td>{{ $item->category_id }}</td>
+                          <td>{{ $item->category->name }}</td>
+                          <td>{{ $item->expdate }}</td>
                           <td>
                             <a type="button" href="{{ route('item.edit',$item->id) }}" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil"></i></a>
                             <a type="button" href="{{ route('item.show',$item->id)  }}" class="btn btn-outline-info btn-sm">&nbsp;<i class="fa-solid fa-info"></i>&nbsp;</a>
-                            <form id ='deleteForm' action="{{ route('item.destroy', $item->id )}}" method="post"  class="d-inline-block">
+                            <form id ='deleteForm' action="{{ route('item.destroy', $item->id)}}" method="post"  class="d-inline-block">
                               @method('delete')
                               @csrf
                             </form>

@@ -48,12 +48,15 @@
                           <td>
                             <a type="button" href="{{ route('category.edit',$category->id) }}" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil"></i></a>
                             <a type="button" href="{{ route('category.show',$category->id)  }}" class="btn btn-outline-info btn-sm">&nbsp;<i class="fa-solid fa-info"></i>&nbsp;</a>
+                            @if ($category->isDeletable())
                             <form id ='deleteForm' action="{{ route('category.destroy', $category->id )}}" method="post"  class="d-inline-block">
                               @method('delete')
                               @csrf
                             </form>
                             <button type="submit" class="btn btn-outline-danger btn-sm"  onclick="confirmDelete()"><i class="fa fa-trash"></i></button>
-                          </td>
+                          
+                            @endif
+                            </td>
                           </tr>
                         @endforeach
                       </tbody>

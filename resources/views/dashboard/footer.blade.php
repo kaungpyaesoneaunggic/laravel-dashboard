@@ -1,5 +1,5 @@
 <footer class="main-footer">
-  <strong>Copyright &copy; 2014-2021 <a href={{ asset("https://adminlte.io")}}>AdminLTE.io</a>.</strong>
+  <strong>Copyright &copy; 2014-2021.</strong>
   All rights reserved.
   
   

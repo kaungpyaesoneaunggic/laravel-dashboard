@@ -6,13 +6,13 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header text-center">
-                    <h3>Create Item</h3>
+                    <h3>Edit Item</h3>
                 </div>
  
                 <div class="card-body">
-                    <form method="POST" action="{{ route('item.update') }}">
+                    <form method="POST" action="{{ route('item.update',$item->id) }}">
                         @csrf
-                        @method(put)
+                        @method('put')
                         <div class="form-group m-3 row">
                             <label for="name" class="col-sm-6 col-form-label">Item Name <small class="text-danger">*</small></label>
                             <div class="col-sm-6">
@@ -33,13 +33,22 @@
                           </div>
                           <div class="form-group m-3 row">
                             <label for="category_id" class="col-sm-6 col-form-label">Category<small class="text-danger">*</small></label>
-                          <select type="category" name="category_id" class="form-control inline">
-                            <option  value="{{ old('category_id') ?? $item->category_id }}">{{ old('price') ?? $item->category_id }}</option>
+                            <div class="col-sm-6">
+                            <select type="category" name="category_id" class="form-control inline">
                             @foreach($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                <option value="{{ $category->id }}"{{ $item->category_id==$category->id ? 'selected':''}}>{{ $category->name }}</option>
                             @endforeach
-                        </select>
+                            <option  value="none">None</option>
+                            </select>
+                            </div>
+                            
                       </div>
+                      <div class="form-group m-3 row">
+                        <label for="expdate" class="col-sm-6 col-form-label">Date<small class="text-danger">*</small></label>
+                        <div class="col-sm-6">
+                          <input type="date" id="expdate" name="expdate" class="form-control" value="{{ $item->expdate }}">
+                        </div>
+                        </div>  
                           <!-- select date will be here -->
                           <!-- select image will be here -->
 
