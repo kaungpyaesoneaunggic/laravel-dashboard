@@ -46,14 +46,22 @@ class ItemController extends Controller
     public function store(StoreItemRequest $request)
     {
         //
-        $item = new Item();
-        $item->name = $request->name;
-        $item->price = $request->price;
-        $item->category_id = $request->category_id;
-        $item->expdate = $request->expdate;
-        $item->save();
-        return redirect()->route("item.index")->with("success","Item Successfully Created");
-
+        
+            
+            $item = new Item();
+            $item->name = $request->name;
+            $item->price = $request->price;
+            $item->category_id = $request->category_id;
+            $item->expdate = $request->expdate;
+            if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $newimage = "gallery_" . uniqid() . "." . $image->extension();
+            $image->storeAs('public/gallery', $newimage);
+            $item->image = $newimage;
+            }
+            $item->save();
+            return redirect()->route("item.index")->with("success", "Item Successfully Created");
+        
     }
 
     /**
@@ -89,15 +97,23 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateItemRequest $request, Item $item)
-    {
-        
-        $item->name = $request->name;
-        $item->price = $request->price;
-        $item->category_id = $request->category_id;
-        $item->update();
-        return redirect()->route('item.index')->with('update','Successfully Updated');
+{
+    $item->name = $request->name;
+    $item->price = $request->price;
+    $item->category_id = $request->category_id;
+    $item->expdate = $request->expdate;
 
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $newimage = "gallery_" . uniqid() . "." . $image->extension();
+        $image->storeAs('public/gallery', $newimage);
+        $item->image = $newimage;
     }
+
+    $item->update();
+    return redirect()->route('item.index')->with('update','updated successfully');
+}
+  
 
     /**
      * Remove the specified resource from storage.

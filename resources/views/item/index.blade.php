@@ -38,17 +38,19 @@
                           <th>Name</th>
                           <th>Price</th>
                           <th>Category</th>
+                          <th>Image</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         @foreach ($items as $item)
-                        <tr>
+                        <tr class="text-center">
                           <th>{{ $num++ }}</th>
                           <th scope="row">id - {{ $item->id }}</td>
                           <td>{{ $item->name }}</td>
                           <td>{{ $item->price }}</td>
                           <td>{{ $item->category->name }}</td>
+                          <td><img src="{{asset('storage/gallery/' . $item->image) }}" width="80px" height="40px" style="object-fit: contain"></td>
                           <td>{{ $item->expdate }}</td>
                           <td>
                             <a type="button" href="{{ route('item.edit',$item->id) }}" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil"></i></a>

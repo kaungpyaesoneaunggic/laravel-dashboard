@@ -18,7 +18,8 @@ class CreateItemsTable extends Migration
         $table->string('name');
         $table->integer('price');
         $table->unsignedBigInteger('category_id');
-        $table->date('expdate')->default('now()');
+        $table->date('expdate');
+        $table->string('image');
         $table->timestamps();
         
         // Define foreign key relationship

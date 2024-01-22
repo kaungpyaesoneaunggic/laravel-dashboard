@@ -10,7 +10,7 @@
                 </div>
  
                 <div class="card-body">
-                    <form method="POST" action="{{ route('item.update',$item->id) }}">
+                    <form method="POST" action="{{ route('item.update',$item->id) }} "enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="form-group m-3 row">
@@ -49,8 +49,14 @@
                           <input type="date" id="expdate" name="expdate" class="form-control" value="{{ $item->expdate }}">
                         </div>
                         </div>  
-                          <!-- select date will be here -->
-                          <!-- select image will be here -->
+
+                        <div class="form-group m-3 row">
+                          <label for="imgInput" class="col-sm-6 col-form-label">Image<small class="text-danger">*</small></label>
+                          <div class="col-sm-6">
+                              <input class="form-control @error('image') is-invalid @enderror" type="file" id="formFile" name="image" value="{{ old('image') ?? $item->image }}">
+                          </div>
+                          <img src="{{asset('storage/gallery/' . $item->image) }}" width="160px" height="80px" style="object-fit: contain">
+                      </div>  
 
  
                           <div class="form-group m-3 row">
