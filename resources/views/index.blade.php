@@ -15,14 +15,25 @@
                         <h5 class="my-1">Coffee</h5>
                         <div class="card">
                             <div class="card-body text-center">
-                                <img style="width: 150px; heigth:200px" src="{{asset('storage/gallery/' . $shopping->image) }}">
+                                <img style="width: 150px; heigth:200px" name='image' src="{{asset('storage/gallery/' . $shopping->image) }}">
                                 <div class="m-1">
-                                    <p class="">{{ $shopping->name }}</p>
-                                    <p class="">{{ $shopping->price }} MMK</p>
+                                    <p class="" name='name' >{{ $shopping->name }}</p>
+                                    <p class="" name='price' >{{ $shopping->price }} MMK</p>
                                 </div>
                                 <div class="d-flex justify-content-end align-items-end">
-                                    <button class="btn btn-outline-primary"><i class="fa fa-add"></i></button>
+                                    <form method="post" action='{{ route('shopping.store',$shopping->id) }}' enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $shopping->id }}">
+                                        <input type="hidden" name="name" value="{{ $shopping->name }}">
+                                        <input type="hidden" name="price" value="{{ $shopping->price }}">
+                                        <input type="hidden" name="category_id" value="{{ $shopping->category->id }}">
+                                        <input type="hidden" name="image" value="{{ $shopping->image }}">
+                                        <input type="hidden" name="expdate" value="{{ $shopping->expdate }}">
+                                        <button type="submit" class="btn btn-outline-primary"><i class="fa fa-add"></i></button>
+                                    
+                                    </form>
                                 </div>
+
                             </div>
                         </div>
                     </div>

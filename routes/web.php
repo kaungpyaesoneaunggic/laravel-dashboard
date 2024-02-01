@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ShoppingController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', [ShoppingController::class,'index'])->name('index');
+Route::resource('shopping', ShoppingController::class);
 Route::resource('category',CategoryController::class);
 Route::resource('item',ItemController::class);
+
+Route::post('/sanctum/csrf-cookie', [CsrfCookieController::class, 'show']);
