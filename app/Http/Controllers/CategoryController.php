@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\Item;
 
 class CategoryController extends Controller
 {
@@ -101,8 +102,9 @@ class CategoryController extends Controller
         // //
         if($category){
             $category->delete();
+            return redirect()->route('category.index')->with("delete","Category deleted Successfully");
         }
-        return redirect()->route('category.index')->with("delete","Category deleted Successfully");;
+        return redirect()->route('category.index')->with("delete","Category Could not be Deleted");
     
         // if ($category->isDeletable()) {
         //     $category->delete();

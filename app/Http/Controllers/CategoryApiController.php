@@ -53,7 +53,10 @@ class CategoryApiController extends Controller
     {
         //
         $category= Category::find($id);
-        return response()->json($category);
+        if($category){
+            return response()->json($category);
+        }
+        return response()->json('Item not found');
     }
 
     /**
@@ -66,7 +69,10 @@ class CategoryApiController extends Controller
     {
         //
         $category = Category::find($id);
-        return response()->json("Category is found Sir");
+        if($category){
+            return response()->json($category);
+        }
+        return response()->json('Edit not completed');
     }
 
     /**
@@ -85,6 +91,7 @@ class CategoryApiController extends Controller
             $category->update();
             return response()->json("The data has been successfully updated");
         }
+        return response()->json("update not successful");
     }
 
     /**
